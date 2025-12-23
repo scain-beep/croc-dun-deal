@@ -20,7 +20,7 @@ backgroundPosition: "center bottom",
 backgroundRepeat: "no-repeat",
 
         fontFamily:
-          "system-ui, -apple-system, Poppins, Nunito Sans, Arial, sans-serif",
+          "var(--font-sans), system-ui, -apple-system, Arial, sans-serif",
         padding: "24px 16px 96px",
         boxSizing: "border-box",
       }}

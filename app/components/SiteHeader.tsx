@@ -22,7 +22,7 @@ export default function SiteHeader() {
         padding: "0 12px",
         color: "#FFD200",
         zIndex: 50,
-        fontFamily: "system-ui, Poppins, Nunito Sans, Arial, sans-serif",
+        fontFamily: "var(--font-sans), system-ui, Arial, sans-serif",
       }}
     >
       {showBack ? (

@@ -30,7 +30,7 @@ export default function MeetShaunAppointment() {
 
         color: "#F7F3E3",
         fontFamily:
-          "system-ui, -apple-system, Poppins, Nunito Sans, Arial, sans-serif",
+          "var(--font-sans), system-ui, -apple-system, Arial, sans-serif",
         padding: "100px 16px 140px", // top + bottom room for header/footer
         boxSizing: "border-box",
         display: "flex",

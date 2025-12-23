@@ -8,7 +8,7 @@
     linear-gradient(180deg, #0b3a26 0%, #0e5333 35%, #0e5333 100%);
   color:var(--sand);
   overflow:hidden;
-  font-family: system-ui, -apple-system, "Poppins", "Nunito Sans", Arial, sans-serif;
+  font-family: var(--font-sans), system-ui, -apple-system, Arial, sans-serif;
 }
 .hero{
   position:relative;

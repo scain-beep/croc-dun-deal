@@ -1,6 +1,5 @@
 "use client";
 
-import ReedCurtain from "@/app/components/ReedCurtain";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
