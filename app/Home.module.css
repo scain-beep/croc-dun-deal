@@ -1,0 +1,142 @@
+.viewport{
+  height:100dvh;
+  width:100%;
+  display:grid;
+  grid-template-rows: 60% 40%;
+  background:
+    radial-gradient(120% 100% at 100% 0%, rgba(255,248,220,0.25), transparent 60%),
+    linear-gradient(180deg, #0b3a26 0%, #0e5333 35%, #0e5333 100%);
+  color:var(--sand);
+  overflow:hidden;
+  font-family: system-ui, -apple-system, "Poppins", "Nunito Sans", Arial, sans-serif;
+}
+.hero{
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:2vmin;
+  gap:4vmin;
+  background: 
+    radial-gradient(65% 55% at 50% 0%, rgba(135,201,232,0.12), transparent 70%),
+    linear-gradient(180deg, rgba(0,122,51,0.15), rgba(0,0,0,0));
+}
+.brandWrap{
+  display:flex;
+  align-items:center;
+  gap:3vmin;
+  text-align:center;
+}
+.logo {
+  /* Rounded corners and transparency */
+  border-radius: 25%;
+  background: transparent;
+  overflow: hidden;
+
+  /* The drop-shadow filter applies outside the alpha edge of your PNG. 
+     It visually separates it from the green background without looking like a square. */
+  filter:
+    drop-shadow(0 2px 4px rgba(0, 0, 0, 0.25))
+    drop-shadow(0 4px 12px rgba(0, 0, 0, 0.15))
+    blur(0.2px);
+  
+  /* Optional: softens any faint sharp outline */
+  image-rendering: auto;
+}
+@media (max-width:420px){
+  .logo{ display:none; }
+}
+.title{
+  margin:0;
+  line-height:1.05;
+  font-weight:800;
+  font-size: clamp(20px, 4.6vmin, 42px);
+  color:var(--sand);
+  text-shadow: 0 0.8vmin 2vmin rgba(0,0,0,0.35);
+}
+.ctaWrap{
+  display:flex;
+  gap:3vmin;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+.btn{
+  -webkit-tap-highlight-color:transparent;
+  text-decoration:none;
+  font-weight:700;
+  padding: clamp(10px, 1.6vmin, 16px) clamp(18px, 2.6vmin, 28px);
+  border-radius:999px;
+  font-size: clamp(15px, 2.2vmin, 18px);
+  transition: transform .08s ease, box-shadow .2s ease, background .2s ease;
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,0.15),
+    0 8px 24px rgba(0,0,0,0.25);
+  position:relative;
+  overflow:hidden;
+}
+.btnPrimary{
+  color:#063017;
+  background: linear-gradient(180deg, var(--gold) 0%, var(--gold-deep) 95%);
+}
+.btnPrimary::after{
+  content:"";
+  position:absolute; inset:0;
+  background: radial-gradient(120% 180% at 50% -40%, rgba(255,255,255,0.65), transparent 35%),
+              radial-gradient(60% 40% at 50% 120%, rgba(255,255,255,0.15), transparent 60%);
+  opacity:.45; pointer-events:none;
+}
+.btnGhost{
+  color:var(--white);
+  background: rgba(255,255,255,0.12);
+  border:1px solid rgba(255,255,255,0.25);
+  backdrop-filter: saturate(140%) blur(6px);
+}
+.btn:active{ transform: translateY(1px) scale(0.99); }
+.btn:hover{ box-shadow:
+  inset 0 0 0 1px rgba(255,255,255,0.2),
+  0 10px 28px rgba(0,0,0,0.32);
+}
+.howItWorks{
+  background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(4,35,22,0.45) 20%, rgba(6,45,28,0.6) 100%),
+              radial-gradient(70% 120% at 50% 0%, rgba(135,201,232,0.08), transparent 70%);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:2vmin 4vmin;
+}
+.steps{
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: clamp(10px, 3vmin, 28px);
+  width:min(100%, 1100px);
+}
+.step{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:1.8vmin;
+  background: rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.12);
+  border-radius:16px;
+  padding: clamp(10px, 2.4vmin, 20px);
+}
+.stepIcon{
+  font-size: clamp(20px, 5.2vmin, 42px);
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.35));
+}
+.stepText{
+  font-weight:700;
+  font-size: clamp(12px, 2.2vmin, 18px);
+  text-align:center;
+  color:var(--sand);
+}
+@media (max-height:640px){
+  .viewport{ transform: scale(0.92); transform-origin: top center; }
+}
+@media (max-height:560px){
+  .viewport{ transform: scale(0.86); }
+}
+@media (max-width:380px){
+  .steps{ gap: 2vmin; }
+}

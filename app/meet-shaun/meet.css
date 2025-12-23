@@ -1,0 +1,20 @@
+.meet-page {
+  /* your overlay + image, but in CSS */
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)),
+    url("/bg/meet-shaun-wetland.png");
+
+  background-size: cover;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+
+  /* default = phone behavior */
+  background-attachment: scroll;
+}
+
+/* desktop/laptop: keep background stationary */
+@media (min-width: 768px) {
+  .meet-page {
+    background-attachment: fixed;
+  }
+}
