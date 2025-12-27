@@ -9,15 +9,15 @@ export default function MeetShaun() {
         display: "grid",
         placeItems: "center",
         background: `
-  linear-gradient(
-    rgba(0, 0, 0, 0.35),
-    rgba(0, 0, 0, 0.35)
-  ),
-  url("/bg/meet-shaun-wetland.png")
-`,
-backgroundSize: "cover",
-backgroundPosition: "center bottom",
-backgroundRepeat: "no-repeat",
+          linear-gradient(
+            rgba(0, 0, 0, 0.35),
+            rgba(0, 0, 0, 0.35)
+          ),
+          url("/bg/meet-shaun-wetland.png")
+        `,
+        backgroundSize: "cover",
+        backgroundPosition: "center bottom",
+        backgroundRepeat: "no-repeat",
 
         fontFamily:
           "var(--font-sans), system-ui, -apple-system, Arial, sans-serif",
@@ -79,7 +79,6 @@ backgroundRepeat: "no-repeat",
             border: "2px solid rgba(255,210,0,0.65)",
           }}
         >
-          {/* Replace src with your real video later (Cloudflare / public mp4) */}
           <video
             autoPlay
             muted

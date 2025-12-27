@@ -1,6 +1,7 @@
 "use client";
+
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, type CSSProperties } from "react";
 import ReedCurtain from "../../components/ReedCurtain";
 import WaterButton from "../../components/WaterButton";
 import { useApply } from "../FormStore";
@@ -8,26 +9,30 @@ import { useApply } from "../FormStore";
 export default function EmploymentMore() {
   const router = useRouter();
   const { setField } = useApply();
+
   const [employer, setEmployer] = useState("");
   const [role, setRole] = useState("");
   const [curtainOpen, setCurtainOpen] = useState(false);
   const [advancing, setAdvancing] = useState(false);
 
   function submit() {
+    if (advancing) return;
+
     setField("employer", employer);
     setField("role", role);
+
     setAdvancing(true);
     setTimeout(() => setCurtainOpen(true), 120);
     setTimeout(() => router.push("/apply/income"), 720);
   }
 
-  const scene = {
+  const scene: CSSProperties = {
     position: "relative",
     minHeight: "100dvh",
     overflow: "hidden",
   };
 
-  const wrap = {
+  const wrap: CSSProperties = {
     opacity: advancing ? 0 : 1,
     pointerEvents: advancing ? "none" : "auto",
     transition: "opacity .15s ease",
@@ -37,11 +42,12 @@ export default function EmploymentMore() {
   };
 
   /* 🔥 PAGE-SPECIFIC SMALLER BUTTON */
-  const smallButton = {
+  const smallButton: CSSProperties = {
     width: "min(300px, 70vw)",
     padding: "10px 16px",
     fontSize: "14px",
     marginTop: "4px",
+    display: "inline-block",
   };
 
   return (
@@ -63,7 +69,6 @@ export default function EmploymentMore() {
           placeholder="What is your role?"
         />
 
-        {/* Apply smaller styling ONLY here */}
         <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
           <WaterButton onClick={submit} type="button">
             <span style={smallButton}>Continue</span>

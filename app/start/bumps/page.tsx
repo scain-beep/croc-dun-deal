@@ -1,4 +1,4 @@
-import ReedCurtain from "@/app/components/ReedCurtain";
+import ReedCurtain from "../../components/ReedCurtain";
 import PageShell from "../../components/PageShell";
 import LeadForm from "../components/LeadForm";
 

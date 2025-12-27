@@ -56,7 +56,7 @@ export default function PageShell({
           </h1>
         )}
 
-        {typeof progress === "number" && <ProgressBar progress={progress} />}
+        {typeof progress === "number" && <ProgressBar percent={progress} />}
 
         {children}
       </section>

@@ -1,47 +1,50 @@
 "use client";
 
-import React, { useState, FormEvent } from "react";
+import React, { useState, type FormEvent } from "react";
+
+const inputStyle: React.CSSProperties = {
+  width: "100%",
+  padding: "10px 12px",
+  borderRadius: 10,
+  border: "1px solid rgba(255,255,255,0.35)",
+  background: "rgba(0,0,0,0.35)",
+  color: "#F7F3E3",
+  fontSize: "0.95rem",
+  boxSizing: "border-box",
+};
 
 export default function MeetShaunAppointment() {
   const [submitted, setSubmitted] = useState(false);
   const [firstName, setFirstName] = useState("");
   const [appointmentDateTime, setAppointmentDateTime] = useState("");
 
+  const address = "2477 E. Trans Canada Hwy, Kamloops, BC V2C 4A9";
+
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    // Later: hook this into email / API / CRM.
     setSubmitted(true);
   };
-
-  const address = "2477 E. Trans Canada Hwy, Kamloops, BC V2C 4A9";
 
   return (
     <main
       style={{
         minHeight: "100dvh",
-        // Background image + dark overlay so text stays readable
-        background: `
-          linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)),
-          url("/bg/meet-shaun-wetland.png")
-        `,
+        backgroundImage:
+          'linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url("/bg/meet-shaun-wetland.png")',
         backgroundSize: "cover",
         backgroundPosition: "center bottom",
         backgroundRepeat: "no-repeat",
-
+        backgroundAttachment: "scroll",
         color: "#F7F3E3",
-        fontFamily:
-          "var(--font-sans), system-ui, -apple-system, Arial, sans-serif",
-        padding: "100px 16px 140px", // top + bottom room for header/footer
+        fontFamily: "var(--font-sans), system-ui, -apple-system, Arial, sans-serif",
+        padding: "100px 16px 140px",
         boxSizing: "border-box",
         display: "flex",
         justifyContent: "center",
       }}
     >
-      {/* Desktop fixed background, mobile scroll */}
+      {/* Desktop fixed background */}
       <style jsx>{`
-        main {
-          background-attachment: scroll;
-        }
         @media (min-width: 900px) {
           main {
             background-attachment: fixed;
@@ -88,7 +91,6 @@ export default function MeetShaunAppointment() {
 
         {!submitted ? (
           <form onSubmit={handleSubmit} style={{ display: "grid", gap: 14 }}>
-            {/* First Name */}
             <div style={{ display: "grid", gap: 4 }}>
               <label htmlFor="firstName" style={{ fontSize: "0.9rem" }}>
                 First Name *
@@ -104,21 +106,13 @@ export default function MeetShaunAppointment() {
               />
             </div>
 
-            {/* Last Name */}
             <div style={{ display: "grid", gap: 4 }}>
               <label htmlFor="lastName" style={{ fontSize: "0.9rem" }}>
                 Last Name *
               </label>
-              <input
-                id="lastName"
-                name="lastName"
-                type="text"
-                required
-                style={inputStyle}
-              />
+              <input id="lastName" name="lastName" type="text" required style={inputStyle} />
             </div>
 
-            {/* Phone */}
             <div style={{ display: "grid", gap: 4 }}>
               <label htmlFor="phone" style={{ fontSize: "0.9rem" }}>
                 Phone Number *
@@ -133,7 +127,6 @@ export default function MeetShaunAppointment() {
               />
             </div>
 
-            {/* Email */}
             <div style={{ display: "grid", gap: 4 }}>
               <label htmlFor="email" style={{ fontSize: "0.9rem" }}>
                 Email *
@@ -148,7 +141,6 @@ export default function MeetShaunAppointment() {
               />
             </div>
 
-            {/* Preferred Date & Time */}
             <div style={{ display: "grid", gap: 4 }}>
               <label htmlFor="appointmentDateTime" style={{ fontSize: "0.9rem" }}>
                 Preferred Date & Time *
@@ -168,7 +160,6 @@ export default function MeetShaunAppointment() {
               </small>
             </div>
 
-            {/* Notes */}
             <div style={{ display: "grid", gap: 4 }}>
               <label htmlFor="notes" style={{ fontSize: "0.9rem" }}>
                 Anything you&apos;d like me to know ahead of time?
@@ -177,15 +168,11 @@ export default function MeetShaunAppointment() {
                 id="notes"
                 name="notes"
                 rows={3}
-                placeholder="Example: I’m rebuilding after a bankruptcy, self-employed, or looking to trade in my current vehicle."
-                style={{
-                  ...inputStyle,
-                  resize: "vertical",
-                }}
+                placeholder="Example: rebuilding after a bankruptcy, self-employed, trade-in, etc."
+                style={{ ...inputStyle, resize: "vertical" }}
               />
             </div>
 
-            {/* Address notice */}
             <div
               style={{
                 fontSize: "0.82rem",
@@ -200,7 +187,6 @@ export default function MeetShaunAppointment() {
               {address}
             </div>
 
-            {/* Submit button */}
             <button
               type="submit"
               style={{
@@ -255,15 +241,3 @@ export default function MeetShaunAppointment() {
     </main>
   );
 }
-
-const inputStyle: React.CSSProperties = {
-  width: "100%",
-  padding: "10px 12px",
-  borderRadius: 10,
-  border: "1px solid rgba(255,255,255,0.35)",
-  background: "rgba(0,0,0,0.35)",
-  color: "#F7F3E3",
-  fontSize: "0.95rem",
-  boxSizing: "border-box",
-};
-

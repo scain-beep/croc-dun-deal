@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, type CSSProperties } from "react";
 import ReedCurtain from "../../components/ReedCurtain";
 import WaterButton from "../../components/WaterButton";
 import { useApply } from "../FormStore";
@@ -12,31 +12,31 @@ export default function Journey() {
   const [curtainOpen, setCurtainOpen] = useState(false);
   const [advancing, setAdvancing] = useState(false);
 
-  function advance(nextPath) {
+  function advance(nextPath: string) {
     setAdvancing(true);
     setTimeout(() => setCurtainOpen(true), 120);
     setTimeout(() => router.push(nextPath), 720);
   }
 
-  function choose(value, nextPath) {
+  function choose(value: string, nextPath: string) {
     setField("journey", value);
     advance(nextPath);
   }
 
-  const scene = {
+  const scene: CSSProperties = {
     position: "relative",
     minHeight: "100vh",
     overflow: "hidden",
   };
 
   // Updated wrap with the optional improvement
-  const wrap = {
+  const wrap: CSSProperties = {
     opacity: advancing ? 0 : 1,
     pointerEvents: advancing ? "none" : "auto",
     transition: "opacity 0.15s ease",
     margin: "14vh auto 0",
-    width: "100%",          // NEW
-    maxWidth: "520px",      // NEW (matches global form-wrap)
+    width: "100%",
+    maxWidth: "520px",
   };
 
   return (
@@ -45,9 +45,8 @@ export default function Journey() {
 
       <div className="form-wrap" style={wrap}>
         <h1 style={{ fontSize: "clamp(28px, 4vw, 44px)" }}>
-  Where are you in your credit journey?
-</h1>
-
+          Where are you in your credit journey?
+        </h1>
 
         <WaterButton onClick={() => choose("Just Starting", "/apply/vehicle")}>
           Just Starting

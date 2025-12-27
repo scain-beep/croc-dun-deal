@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, type CSSProperties } from "react";
 import ReedCurtain from "../../components/ReedCurtain";
 import WaterButton from "../../components/WaterButton";
 import { useApply } from "../FormStore";
@@ -12,24 +12,24 @@ export default function Step() {
   const [curtainOpen, setCurtainOpen] = useState(false);
   const [advancing, setAdvancing] = useState(false);
 
-  function advance(nextPath) {
+  function advance(nextPath: string) {
     setAdvancing(true);
     setTimeout(() => setCurtainOpen(true), 120);
     setTimeout(() => router.push(nextPath), 720);
   }
 
-  function choose(value, nextPath) {
+  function choose(value: string, nextPath: string) {
     setField("status", value);
     advance(nextPath);
   }
 
-  const scene = {
+  const scene: CSSProperties = {
     position: "relative",
     minHeight: "100dvh",
     overflow: "hidden",
   };
 
-  const wrap = {
+  const wrap: CSSProperties = {
     opacity: advancing ? 0 : 1,
     pointerEvents: advancing ? "none" : "auto",
     transition: "opacity 0.15s ease",

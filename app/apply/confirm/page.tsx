@@ -1,6 +1,7 @@
 "use client";
+
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, type CSSProperties } from "react";
 import ReedCurtain from "../../components/ReedCurtain";
 import WaterButton from "../../components/WaterButton";
 import { useApply } from "../FormStore";
@@ -35,7 +36,7 @@ export default function Confirm() {
       setTimeout(() => setCurtainOpen(true), 120);
 
       // Optional: pass first name into thanks without needing FormStore there
-      const first = encodeURIComponent(state?.first ?? "");
+      const first = encodeURIComponent((state?.first as string) ?? "");
       setTimeout(() => router.push(`/thanks${first ? `?first=${first}` : ""}`), 720);
     } catch {
       setAdvancing(false);
@@ -43,13 +44,14 @@ export default function Confirm() {
     }
   }
 
-  const scene = {
+  const scene: CSSProperties = {
     position: "relative",
     minHeight: "100dvh",
     overflow: "hidden",
   };
 
-  const wrap = {
+  // 💯 SAME LAYOUT AS EmploymentMore
+  const wrap: CSSProperties = {
     opacity: advancing ? 0 : 1,
     pointerEvents: advancing ? "none" : "auto",
     transition: "opacity .15s ease",
@@ -58,7 +60,8 @@ export default function Confirm() {
     maxWidth: "520px",
   };
 
-  const smallButton = {
+  // 💯 SAME SMALL BUTTON STYLE
+  const smallButton: CSSProperties = {
     width: "min(300px, 70vw)",
     padding: "10px 16px",
     fontSize: "14px",
@@ -66,7 +69,8 @@ export default function Confirm() {
     display: "inline-block",
   };
 
-  const box = {
+  // 💯 Matching box width + style
+  const box: CSSProperties = {
     background: "rgba(0,0,0,.35)",
     color: "#fff",
     padding: "16px 18px",
@@ -75,12 +79,19 @@ export default function Confirm() {
     marginBottom: "18px",
   };
 
+  const errText: CSSProperties = {
+    color: "#fff",
+    opacity: 0.95,
+    fontSize: 12,
+    marginBottom: 10,
+  };
+
   return (
     <main style={scene}>
       <ReedCurtain open={curtainOpen} />
 
       <div className="form-wrap" style={wrap}>
-        <h1>Confirm & submit</h1>
+        <h1>Confirm &amp; submit</h1>
 
         <div style={box}>
           <p style={{ margin: 0 }}>
@@ -92,19 +103,14 @@ export default function Confirm() {
           </p>
         </div>
 
-        {error && (
-          <div style={{ color: "#fff", opacity: 0.95, fontSize: 12, marginBottom: 10 }}>
-            {error}
-          </div>
-        )}
+        {error && <div style={errText}>{error}</div>}
 
         <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
           <WaterButton onClick={agree} type="button">
-            <span style={smallButton}>I agree & submit</span>
+            <span style={smallButton}>I agree &amp; submit</span>
           </WaterButton>
         </div>
       </div>
     </main>
   );
 }
-
