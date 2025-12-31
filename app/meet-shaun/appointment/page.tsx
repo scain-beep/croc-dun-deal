@@ -18,11 +18,50 @@ export default function MeetShaunAppointment() {
   const [firstName, setFirstName] = useState("");
   const [appointmentDateTime, setAppointmentDateTime] = useState("");
 
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
   const address = "2477 E. Trans Canada Hwy, Kamloops, BC V2C 4A9";
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSubmitted(true);
+    if (sending) return;
+
+    setError(null);
+    setSending(true);
+
+    const form = e.currentTarget;
+
+    const payload = {
+      firstName,
+      lastName: (form.elements.namedItem("lastName") as HTMLInputElement)?.value?.trim(),
+      phone: (form.elements.namedItem("phone") as HTMLInputElement)?.value?.trim(),
+      email: (form.elements.namedItem("email") as HTMLInputElement)?.value?.trim(),
+      appointmentDateTime,
+      notes: (form.elements.namedItem("notes") as HTMLTextAreaElement)?.value?.trim(),
+    };
+
+    try {
+      const res = await fetch("/api/appointment", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      const json = await res.json().catch(() => null);
+
+      if (!res.ok || !json?.ok) {
+        setError(json?.error || "Appointment request failed. Please try again.");
+        setSending(false);
+        return;
+      }
+
+      setSubmitted(true);
+    } catch {
+      setError("Network error. Please try again.");
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -91,6 +130,12 @@ export default function MeetShaunAppointment() {
 
         {!submitted ? (
           <form onSubmit={handleSubmit} style={{ display: "grid", gap: 14 }}>
+            {error && (
+              <div style={{ color: "#fff", opacity: 0.95, fontSize: 12 }}>
+                {error}
+              </div>
+            )}
+
             <div style={{ display: "grid", gap: 4 }}>
               <label htmlFor="firstName" style={{ fontSize: "0.9rem" }}>
                 First Name *
@@ -189,6 +234,7 @@ export default function MeetShaunAppointment() {
 
             <button
               type="submit"
+              disabled={sending}
               style={{
                 marginTop: 4,
                 padding: "12px 22px",
@@ -201,9 +247,10 @@ export default function MeetShaunAppointment() {
                 cursor: "pointer",
                 width: "100%",
                 boxShadow: "0 8px 20px rgba(0,0,0,0.5)",
+                opacity: sending ? 0.9 : 1,
               }}
             >
-              Request Appointment
+              {sending ? "Sending..." : "Request Appointment"}
             </button>
           </form>
         ) : (
