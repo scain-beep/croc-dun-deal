@@ -1,0 +1,44 @@
+/* --------------------------------------------
+   CREDIT HELP — FULL-SCROLL, STATIC LAYOUT
+-------------------------------------------- */
+
+.credithelp-shell {
+  width: 100%;
+  min-height: 100vh;
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch;
+
+  /* Same brand background as legal (or change if you want later) */
+  background: url("/bg/wetland-far.png") center/cover no-repeat;
+
+  padding: 80px 20px 140px; /* space for header + footer */
+  box-sizing: border-box;
+
+  color: #FFD200 !important;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.55);
+}
+
+.credithelp-shell h1,
+.credithelp-shell h2 {
+  color: #FFD200;
+  margin-bottom: 16px;
+  text-align: left;
+}
+
+.credithelp-shell p {
+  font-size: 1.05rem;
+  line-height: 1.55;
+  margin-bottom: 18px;
+  color: #fff;
+}
+
+.credithelp-inner {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.credithelp-shell::after {
+  content: "";
+  display: block;
+  height: 40px;
+}

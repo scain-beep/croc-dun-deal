@@ -77,7 +77,7 @@ export default function FAQ() {
 
       {/* Helpful internal links (AI + humans) */}
       <div style={{ display: "grid", gap: 8, margin: "14px 0 22px" }}>
-        <Link href="/credit-help" style={linkStyle}>
+        <Link href="/legal/credit-help" style={linkStyle}>
           Read: Credit Help in B.C. (how this works)
         </Link>
         <Link href="/apply/journey" style={linkStyle}>

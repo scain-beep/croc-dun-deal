@@ -1,14 +1,15 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import ReedCurtain from "../components/ReedCurtain";
 
 const choices = [
-  { id: "start",  title: "Just Starting" },
-  { id: "bumps",  title: "Had Some Bumps" },
-  { id: "rebuild",title: "Ready to Rebuild" }
+  { id: "start", title: "Just Starting" },
+  { id: "bumps", title: "Had Some Bumps" },
+  { id: "rebuild", title: "Ready to Rebuild" },
 ];
 
 export default function StartWizard() {
@@ -17,7 +18,7 @@ export default function StartWizard() {
 
   function go(id: string) {
     if (opening) return;
-    setOpening(true);                 // drops the reed curtain
+    setOpening(true); // drops the reed curtain
     setTimeout(() => router.push(`/start/${id}`), 550);
   }
 
@@ -38,12 +39,28 @@ export default function StartWizard() {
               onClick={() => go(c.id)}
               initial={{ y: 20, opacity: 0, scale: 0.98 }}
               animate={{ y: 0, opacity: 1, scale: 1 }}
-              transition={{ delay: i * 0.05, type: "spring", stiffness: 140, damping: 18 }}
+              transition={{
+                delay: i * 0.05,
+                type: "spring",
+                stiffness: 140,
+                damping: 18,
+              }}
               style={card}
             >
               <span style={{ fontWeight: 800 }}>{c.title}</span>
             </motion.button>
           ))}
+        </div>
+
+        {/* ✅ NEW: soft educational link under the choices */}
+        <div style={helperWrap}>
+          <p style={helperText}>
+            Not sure which option fits? You can read a calm, no-pressure guide first.
+          </p>
+
+          <Link href="/credit-help" style={helperLink} prefetch={true}>
+            Read the Credit Help Guide →
+          </Link>
         </div>
       </div>
 
@@ -61,9 +78,10 @@ const scene: React.CSSProperties = {
 };
 
 const reedsWall: React.CSSProperties = {
-  position: "absolute", inset: 0,
+  position: "absolute",
+  inset: 0,
   background: `url("/bg/reeds-wall.png") center bottom/cover no-repeat`,
-  opacity: .85,
+  opacity: 0.85,
 };
 
 const wrap: React.CSSProperties = {
@@ -89,4 +107,31 @@ const card: React.CSSProperties = {
   background: "rgba(0,0,0,.20)",
   border: "1px solid rgba(255,255,255,.18)",
   cursor: "pointer",
+};
+
+/* ✅ NEW styles (small + neutral, won’t fight your cards) */
+const helperWrap: React.CSSProperties = {
+  marginTop: 8,
+  textAlign: "center",
+  display: "grid",
+  gap: 8,
+};
+
+const helperText: React.CSSProperties = {
+  margin: 0,
+  color: "rgba(247,243,227,0.88)",
+  fontSize: "0.95rem",
+  lineHeight: 1.5,
+};
+
+const helperLink: React.CSSProperties = {
+  display: "inline-block",
+  margin: "0 auto",
+  padding: "10px 14px",
+  borderRadius: 999,
+  border: "1px solid rgba(255,210,0,0.55)",
+  color: "#FFD200",
+  textDecoration: "none",
+  fontWeight: 800,
+  background: "rgba(0,0,0,0.18)",
 };

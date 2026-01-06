@@ -29,7 +29,6 @@ export default function Journey() {
     overflow: "hidden",
   };
 
-  // Updated wrap with the optional improvement
   const wrap: CSSProperties = {
     opacity: advancing ? 0 : 1,
     pointerEvents: advancing ? "none" : "auto",
@@ -59,7 +58,24 @@ export default function Journey() {
         <WaterButton onClick={() => choose("Ready to Rebuild", "/apply/vehicle")}>
           Ready to Rebuild
         </WaterButton>
+
+        {/* Calm exit ramp */}
+        <a
+          href="/legal/credit-help"
+          style={{
+            display: "block",
+            marginTop: 14,
+            textAlign: "center",
+            color: "#F7F3E3",
+            opacity: 0.9,
+            textDecoration: "underline",
+            fontSize: "0.92rem",
+          }}
+        >
+          Not sure which option fits? Check out this guide
+        </a>
       </div>
     </main>
   );
 }
+
