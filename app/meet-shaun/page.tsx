@@ -14,36 +14,35 @@ export default function MeetShaun() {
   const [showControls, setShowControls] = useState(false);
 
   useEffect(() => {
+  let cancelled = false;
+
+  async function attemptAutoplay() {
     const vid = videoRef.current;
     if (!vid) return;
 
-    let cancelled = false;
-
-    async function attemptAutoplay() {
-      try {
-        // Try autoplay (muted). If the file is missing, this often throws or fires error.
-        await vid.play();
-        if (!cancelled) setVideoStatus("ready");
-      } catch {
-        if (!cancelled) setVideoStatus("missingOrBlocked");
-      }
-    }
-
-    // If the file 404s, the <video> element will also fire an error event.
-    const onError = () => {
+    try {
+      // Try autoplay (muted). If the file is missing, this often throws or fires error.
+      await vid.play();
+      if (!cancelled) setVideoStatus("ready");
+    } catch {
       if (!cancelled) setVideoStatus("missingOrBlocked");
-    };
+    }
+  }
 
-    vid.addEventListener("error", onError);
+  const onError = () => {
+    if (!cancelled) setVideoStatus("missingOrBlocked");
+  };
 
-    // Try autoplay once mounted
-    attemptAutoplay();
+  const vid = videoRef.current;
+  if (vid) vid.addEventListener("error", onError);
 
-    return () => {
-      cancelled = true;
-      vid.removeEventListener("error", onError);
-    };
-  }, []);
+  attemptAutoplay();
+
+  return () => {
+    cancelled = true;
+    if (vid) vid.removeEventListener("error", onError);
+  };
+}, []);
 
   return (
     <main
