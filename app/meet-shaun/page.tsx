@@ -213,19 +213,12 @@ export default function MeetShaun() {
           >
             In this video
           </h2>
-          <ul
-            style={{
-              margin: 0,
-              paddingLeft: 18,
-              lineHeight: 1.65,
-              opacity: 0.95,
-            }}
-          >
-            <li>Who I am, what Crocodile-Done-Deal is, and who it’s for</li>
-            <li>How I handle tough credit files (no rushing, no ghosting)</li>
-            <li>What happens after you apply (and how long it usually takes)</li>
-            <li>What I’ll do even if a vehicle doesn’t make sense right now</li>
-          </ul>
+          <ul style={{ margin: 0, paddingLeft: 18, lineHeight: 1.65, opacity: 0.95 }}>
+  <li>Who I am and what Crocodile-Done-Deal is</li>
+  <li>Who this is for in <strong>British Columbia</strong></li>
+  <li>What to do next: read the guide, apply, or book a time</li>
+</ul>
+
         </div>
 
         {/* Appointment CTA */}
@@ -252,7 +245,7 @@ export default function MeetShaun() {
         {/* Secondary links: AI spine */}
         <div style={{ display: "grid", gap: 8, marginTop: 10 }}>
           <Link
-            href="/credit-help"
+            href="/legal/credit-help"
             style={{
               display: "inline-block",
               textDecoration: "none",
@@ -265,7 +258,7 @@ export default function MeetShaun() {
               border: "1px solid rgba(255,255,255,0.18)",
             }}
           >
-            Read the calm credit guide first
+            Read the credit guide first
           </Link>
 
           <Link
