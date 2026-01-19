@@ -30,13 +30,16 @@ export default function WaterButton({
         cursor: "pointer",
         userSelect: "none",
 
-        /* FIXED WIDTH + CENTERING */
-        width: "min(720px, 92vw)",
+        /* RESPONSIVE: obey parent container */
+        width: "100%",
+        maxWidth: "100%",
         display: "block",
         margin: "0 auto",
+        boxSizing: "border-box",
       }}
     >
       {children}
     </button>
   );
 }
+

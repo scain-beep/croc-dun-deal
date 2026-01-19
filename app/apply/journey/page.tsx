@@ -36,6 +36,7 @@ export default function Journey() {
     margin: "14vh auto 0",
     width: "100%",
     maxWidth: "520px",
+
   };
 
   return (
@@ -43,9 +44,18 @@ export default function Journey() {
       <ReedCurtain open={curtainOpen} />
 
       <div className="form-wrap" style={wrap}>
-        <h1 style={{ fontSize: "clamp(28px, 4vw, 44px)" }}>
-          Where are you in your credit journey?
-        </h1>
+        <h1
+  style={{
+    fontSize: "clamp(28px, 4vw, 44px)",
+    textAlign: "center",
+    width: "100%",
+    maxWidth: 520,
+    margin: "0 auto 14px",
+  }}
+>
+  Where are you in your credit journey?
+</h1>
+
 
         <WaterButton onClick={() => choose("Just Starting", "/apply/vehicle")}>
           Just Starting
