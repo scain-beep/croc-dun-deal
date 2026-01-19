@@ -1,13 +1,24 @@
-import { MetadataRoute } from "next";
+import type { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = "https://croc-dun-deal.ca";
+  const baseUrl = "https://croc-dun-deal.ca";
 
-  return [
-    { url: base, lastModified: new Date() },
-    { url: `${base}/credit-help`, lastModified: new Date() },
-    { url: `${base}/legal/faq`, lastModified: new Date() },
-    { url: `${base}/meet-shaun`, lastModified: new Date() },
-    { url: `${base}/meet-shaun/appointment`, lastModified: new Date() },
+  const routes = [
+    "",
+    "/credit-help",
+    "/legal/faq",
+    "/meet-shaun",
+    "/meet-shaun/appointment",
+    // Only include /apply pages if you WANT them indexed:
+    // "/apply/journey",
   ];
+
+  const now = new Date();
+
+  return routes.map((path) => ({
+    url: `${baseUrl}${path}`,
+    lastModified: now,
+    changeFrequency: "weekly",
+    priority: path === "" ? 1 : 0.7,
+  }));
 }
