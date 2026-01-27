@@ -1,3 +1,4 @@
+// app/layout.tsx
 import "./globals.css";
 import type { Metadata } from "next";
 import { Poppins, Nunito_Sans } from "next/font/google";
@@ -5,9 +6,17 @@ import SiteHeader from "./components/SiteHeader";
 import SiteFooter from "./components/SiteFooter";
 
 export const metadata: Metadata = {
-  title: "Crocodile-Done-Deal",
-  description: "Join the Hunt for Better Credit",
+  title: {
+    default: "Crocodile-Done-Deal | Bad Credit Car Help in British Columbia",
+    template: "%s | Crocodile-Done-Deal",
+  },
+  description:
+    "Bad credit car financing help in British Columbia. Clear next steps, privacy-first applications, and a pressure-free process in Kamloops and across BC.",
+  alternates: { canonical: "https://croc-dun-deal.ca" },
 };
+
+// fonts... (keep your font code below)
+
 
 // Load fonts
 const poppins = Poppins({
