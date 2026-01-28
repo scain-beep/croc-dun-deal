@@ -1,13 +1,24 @@
+// app/legal/page.tsx
 import type { Metadata } from "next";
-import FAQClient from "app/legal/faq/FAQClient.tsx";
+import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Bad Credit Car Help in British Columbia",
-  description:
-    "Crocodile-Done-Deal helps people in British Columbia with rough credit find real vehicle options without pressure. Start your credit hunt or meet Shaun in Kamloops.",
-  alternates: { canonical: "https://croc-dun-deal.ca/" },
+  title: "Legal | Crocodile-Done-Deal",
+  description: "Privacy, terms, FAQs, and the credit guide for Crocodile-Done-Deal.",
+  alternates: { canonical: "https://croc-dun-deal.ca/legal" },
 };
 
 export default function Page() {
-  return <FAQClient />;
+  return (
+    <main style={{ padding: "96px 16px 140px", maxWidth: 760, margin: "0 auto" }}>
+      <h1 style={{ color: "#FFD200", marginTop: 0 }}>Legal</h1>
+
+      <div style={{ display: "grid", gap: 10, marginTop: 16 }}>
+        <Link href="/legal/privacy">Privacy</Link>
+        <Link href="/legal/terms">Terms</Link>
+        <Link href="/legal/faq">FAQ</Link>
+        <Link href="/legal/credit-help">Credit Help</Link>
+      </div>
+    </main>
+  );
 }
