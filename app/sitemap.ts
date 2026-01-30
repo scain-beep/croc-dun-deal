@@ -2,18 +2,15 @@ import type { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://croc-dun-deal.ca";
+  const now = new Date();
 
   const routes = [
     "",
-    "/credit-help",
+    "/legal/credit-help",
     "/legal/faq",
     "/meet-shaun",
     "/meet-shaun/appointment",
-    // Only include /apply pages if you WANT them indexed:
-    // "/apply/journey",
   ];
-
-  const now = new Date();
 
   return routes.map((path) => ({
     url: `${baseUrl}${path}`,

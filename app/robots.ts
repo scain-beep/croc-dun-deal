@@ -6,7 +6,10 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/apply/"],
+        disallow: [
+          "/apply/",
+          "/thanks",
+        ],
       },
     ],
     sitemap: "https://croc-dun-deal.ca/sitemap.xml",
